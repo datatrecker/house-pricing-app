@@ -29,7 +29,7 @@ A interface limita os controles às **faixas/valores observados no conjunto de t
 
 ## ☁️ Deploy no Streamlit Community Cloud
 
-   O app está disponível em **[URL pública](https://house-pricing-app-tbg5vuxtkarvx6eamhlk6v.streamlit.app/)**.
+   O app está disponível no **[Streamlit](https://house-pricing-predictions.streamlit.app/)**.
 
 ---
 
