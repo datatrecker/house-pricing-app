@@ -27,82 +27,9 @@ A interface limita os controles às **faixas/valores observados no conjunto de t
 
 ---
 
-## 🚀 Instalação e execução local
+## ☁️ Deploy no Streamlit Community Cloud
 
-### 1) Pré-requisitos
-- **Python 3.9+** (recomendado 3.10/3.11)
-- `git` opcional (para versionamento)
-
-### 2) Clonar ou baixar este repositório
-```bash
-# via git
-git clone https://github.com/<seu-usuario>/<seu-repo>.git
-cd <seu-repo>
-
-# ou baixe o ZIP pelo GitHub e extraia numa pasta
-```
-
-### 3) (Opcional) Criar e ativar um ambiente virtual
-**macOS / Linux**
-```bash
-python -m venv .venv
-source .venv/bin/activate
-```
-**Windows (PowerShell)**
-```powershell
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-```
-
-### 4) Atualizar ferramentas de build (recomendado)
-```bash
-python -m pip install --upgrade pip setuptools wheel
-```
-
-### 5) Instalar dependências
-```bash
-pip install -r requirements.txt
-```
-> Se surgir erro envolvendo `statsmodels`/`scipy`, tente:
-```bash
-# opção 1: somente binários pré-compilados
-pip install --only-binary=:all: numpy scipy statsmodels
-
-# opção 2: reinstalar numpy/scipy/statsmodels após atualizar pip
-python -m pip install --upgrade pip
-pip install --force-reinstall numpy scipy statsmodels
-```
-
-### 6) Executar o app
-```bash
-streamlit run app.py
-```
-O navegador abrirá em `http://localhost:8501`.
-
----
-
-## ☁️ Deploy no Streamlit Community Cloud (GitHub)
-
-### Passo a passo
-1. **Crie um repositório no GitHub** (ex.: `house-pricing-app`).
-2. **Envie** os arquivos `app.py`, `requirements.txt` e `RL_house_pricing.xlsx` para a **raiz** do repositório.
-   ```bash
-   git init
-   git add .
-   git commit -m "Primeira versão do app Streamlit"
-   git branch -M main
-   git remote add origin https://github.com/<seu-usuario>/<seu-repo>.git
-   git push -u origin main
-   ```
-3. Acesse **https://share.streamlit.io** e faça login com o GitHub.
-4. Clique em **New app** e selecione:
-   - **Repository**: `<seu-usuario>/<seu-repo>`
-   - **Branch**: `main` (ou `master`)
-   - **Main file path**: `app.py`
-5. Clique em **Deploy**. Aguarde a instalação das dependências e a compilação.
-6. O app ficará disponível em uma **URL pública** (ex.: `https://<seu-usuario>-<seu-repo>.streamlit.app`).
-
-> **Importante:** Garanta que o `requirements.txt` esteja na **raiz** do repositório. Se aparecer `ModuleNotFoundError: statsmodels`, confirme que `statsmodels` está no `requirements.txt` e faça novo **commit & push**. O Streamlit Cloud recompila automaticamente a cada commit.
+   O app está disponível em **[URL pública](https://house-pricing-app-tbg5vuxtkarvx6eamhlk6v.streamlit.app/)**.
 
 ---
 
@@ -127,25 +54,5 @@ Os valores dos controles são limitados aos **valores presentes no treino**, evi
 ---
 
 ## 🧰 Solução de problemas (FAQ)
-**`ModuleNotFoundError: No module named 'statsmodels'`**
-- Ative o **mesmo** ambiente virtual onde você instalou as libs.
-- Rode `pip install -r requirements.txt`.
-- Atualize o pip: `python -m pip install --upgrade pip setuptools wheel`.
-- Em Apple Silicon (M1/M2), preferir `--only-binary` para `numpy`, `scipy`, `statsmodels`.
-
-**`FileNotFoundError: RL_house_pricing.xlsx`**
-- O arquivo precisa estar **na raiz** do projeto (mesmo diretório do `app.py`).
-- Se preferir outro caminho, ajuste no código: `DATA_PATH = 'RL_house_pricing.xlsx'`.
-
 **App sobe mas a predição não aparece**
 - Clique no botão **“Rodar previsão”** após definir os parâmetros.
-
----
-
-## 📜 Licença
-Defina a licença que preferir (ex.: MIT). Crie um arquivo `LICENSE` se desejar.
-
----
-
-## ✉️ Contato
-Dúvidas ou sugestões? Abra uma **Issue** ou envie um PR.
