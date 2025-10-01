@@ -71,7 +71,7 @@ col1, col2 = st.columns(2)
 with col1:
     sqft = st.slider('Área (sqft)', int(df['sqft'].min()), int(df['sqft'].max()), int(df['sqft'].median()), step=1)
     beds_opts = sorted(df['beds'].dropna().unique().tolist())
-    beds = st.select_slider('Quartos (beds)', options=beds_opts, value=float(np.median(beds_opts)))
+    beds = st.select_slider('Quartos (beds)', options=beds_opts, value=min(beds_opts, key=lambda x: abs(x - np.median(beds_opts))))
 with col2:
     bath_opts = sorted(df['bath'].dropna().unique().tolist())
     bath = st.select_slider('Banheiros (bath)', options=bath_opts, value=float(np.median(bath_opts)))
