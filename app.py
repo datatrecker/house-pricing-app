@@ -74,7 +74,7 @@ with col1:
     beds = st.select_slider('Quartos (beds)', options=beds_opts, value=min(beds_opts, key=lambda x: abs(x - np.median(beds_opts))))
 with col2:
     bath_opts = sorted(df['bath'].dropna().unique().tolist())
-    bath = st.select_slider('Banheiros (bath)', options=bath_opts, value=float(np.median(bath_opts)))
+    bath = st.select_slider('Banheiros (bath)', options=bath_opts, value=min(bath_opts, key=lambda x: abs(x - np.median(bath_opts))))
     exemp = st.radio(f"{bin_col} (1=Yes, 0=No)", options=[0,1], index=1, format_func=lambda x: 'yes (1)' if x==1 else 'no (0)')
 
 run = st.button('Rodar previsão')
@@ -88,8 +88,8 @@ if run:
     pr68 = model.get_prediction(X_new).summary_frame(alpha=0.32).iloc[0]
 
     st.success(f"Preço previsto: **US$ {pred*1000:,.0f}**")
-    st.write(f"Intervalo de predição 95%: **US$ {pr95['obs_ci_lower']*1000:,.0f} — US$ {pr95['obs_ci_upper']*1000:,.0f}**")
-    st.write(f"Faixa ~68% (±1σ): **US$ {pr68['obs_ci_lower']*1000:,.0f} — US$ {pr68['obs_ci_upper']*1000:,.0f}**")
+    st.write(f"Intervalo de predição 95%: {pr95['obs_ci_lower']*1000:,.0f} — {pr95['obs_ci_upper']*1000:,.0f}")
+    st.write(f"Faixa ~68% (±1σ): {pr68['obs_ci_lower']*1000:,.0f} — {pr68['obs_ci_upper']*1000:,.0f}")
 
 st.divider()
 
